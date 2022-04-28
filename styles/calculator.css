@@ -25,34 +25,6 @@
   margin: 25px 0;
 }
 
-.calc-row-2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0;
-}
-
-.calc-row-3 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0;
-}
-
-.calc-row-4 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0;
-}
-
-.calc-row-5 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 25px 0;
-}
-
 .calc-button {
   background-color: silver;
   border: 2px solid black;
