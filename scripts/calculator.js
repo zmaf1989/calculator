@@ -23,7 +23,7 @@ const state = {}
   I don't need to.
 */
 const updateScreen = (screenText = '') => {
-  document.getElementById('screen').innerText = screenText
+  document.getElementById('screen').innerText = screenText;
 }
 
 /*
@@ -75,6 +75,25 @@ const clickListener9 = () => {
 const clickListener0 = () => {
   updateScreen('0')
 }
+const clickListenerClear = () => {
+  updateScreen()
+}
+const clickListenerDivide = () => {
+  updateScreen('/')
+}
+const clickListenerMultiply = () => {
+  updateScreen('*')
+}
+const clickListenerSubtract = () => {
+  updateScreen('-')
+}
+const clickListenerAdd = () => {
+  updateScreen('+')
+}
+const clickListenerDecimal = () => {
+  updateScreen('.')
+}
+
 // 1.
 const initializeListeners = () => {
   const buttonOne = document.getElementById('button-one')
@@ -88,6 +107,11 @@ const initializeListeners = () => {
   const buttonNine = document.getElementById('button-nine')
   const buttonZero = document.getElementById('button-zero')
   const buttonAllClear = document.getElementById('button-clear')
+  const buttonDivide = document.getElementById('button-divide')
+  const buttonMultiply = document.getElementById('button-multiply')
+  const buttonSubtract = document.getElementById('button-subtract')
+  const buttonAdd = document.getElementById('button-add')
+  const buttonDecimal = document.getElementById('button-decimal')
 
   // listener is attached to "button-one"
   buttonOne.onclick = clickListener
@@ -100,7 +124,12 @@ const initializeListeners = () => {
   buttonEight.onclick = clickListener8 
   buttonNine.onclick = clickListener9
   buttonZero.onclick = clickListener0
-  buttonAllClear.onclick = updateScreen('')
+  buttonAllClear.onclick = clickListenerClear
+  buttonDivide.onclick = clickListenerDivide
+  buttonMultiply.onclick = clickListenerMultiply
+  buttonSubtract.onclick = clickListenerSubtract
+  buttonAdd.onclick = clickListenerAdd
+  buttonDecimal.onclick = clickListenerDecimal
 }
 // the buttonAllClear doesnt work for some reason.
 
