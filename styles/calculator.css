@@ -13,8 +13,9 @@
 
 #screen {
   background-color: white;
-  height: 75px;
-  width: 100%;
+  font-family: monospace;
+  font-size: 20px;
+  padding: 30px 15px;
   border: 2px solid black;
 }
 
