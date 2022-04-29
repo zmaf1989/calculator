@@ -23,7 +23,7 @@ const state = {}
   I don't need to.
 */
 const updateScreen = (screenText = '') => {
-  document.getElementById('screen').innerText = screenText
+  document.getElementById('screen').innerText = screenText;
 }
 
 /*
@@ -48,14 +48,90 @@ const updateScreen = (screenText = '') => {
 const clickListener = () => {
   updateScreen('1')
 }
+const clickListener2 = () => {
+  updateScreen('2')
+}
+const clickListener3 = () => {
+  updateScreen('3')
+}
+const clickListener4 = () => {
+  updateScreen('4')
+}
+const clickListener5 = () => {
+  updateScreen('5')
+}
+const clickListener6 = () => {
+  updateScreen('6')
+}
+const clickListener7 = () => {
+  updateScreen('7')
+}
+const clickListener8 = () => {
+  updateScreen('8')
+}
+const clickListener9 = () => {
+  updateScreen('9')
+}
+const clickListener0 = () => {
+  updateScreen('0')
+}
+const clickListenerClear = () => {
+  updateScreen()
+}
+const clickListenerDivide = () => {
+  updateScreen('/')
+}
+const clickListenerMultiply = () => {
+  updateScreen('*')
+}
+const clickListenerSubtract = () => {
+  updateScreen('-')
+}
+const clickListenerAdd = () => {
+  updateScreen('+')
+}
+const clickListenerDecimal = () => {
+  updateScreen('.')
+}
 
 // 1.
 const initializeListeners = () => {
   const buttonOne = document.getElementById('button-one')
+  const buttonTwo = document.getElementById('button-two')
+  const buttonThree = document.getElementById('button-three')
+  const buttonFour = document.getElementById('button-four')
+  const buttonFive = document.getElementById('button-five')
+  const buttonSix = document.getElementById('button-six')
+  const buttonSeven = document.getElementById('button-seven')
+  const buttonEight = document.getElementById('button-eight')
+  const buttonNine = document.getElementById('button-nine')
+  const buttonZero = document.getElementById('button-zero')
+  const buttonAllClear = document.getElementById('button-clear')
+  const buttonDivide = document.getElementById('button-divide')
+  const buttonMultiply = document.getElementById('button-multiply')
+  const buttonSubtract = document.getElementById('button-subtract')
+  const buttonAdd = document.getElementById('button-add')
+  const buttonDecimal = document.getElementById('button-decimal')
 
   // listener is attached to "button-one"
   buttonOne.onclick = clickListener
+  buttonTwo.onclick = clickListener2 
+  buttonThree.onclick = clickListener3
+  buttonFour.onclick = clickListener4
+  buttonFive.onclick = clickListener5
+  buttonSix.onclick = clickListener6
+  buttonSeven.onclick = clickListener7
+  buttonEight.onclick = clickListener8 
+  buttonNine.onclick = clickListener9
+  buttonZero.onclick = clickListener0
+  buttonAllClear.onclick = clickListenerClear
+  buttonDivide.onclick = clickListenerDivide
+  buttonMultiply.onclick = clickListenerMultiply
+  buttonSubtract.onclick = clickListenerSubtract
+  buttonAdd.onclick = clickListenerAdd
+  buttonDecimal.onclick = clickListenerDecimal
 }
+// the buttonAllClear doesnt work for some reason.
 
 // 3.
 initializeListeners()
