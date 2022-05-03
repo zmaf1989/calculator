@@ -21,11 +21,30 @@ const addNumber = (num) => {
     currentStep = 'firstNumber'
   } else {
     currentStep = 'secondNumber'
-  }
+  } 
 
   state[currentStep] += num
   updateScreen(state[currentStep])
 }
+
+const addDecimal = () => {
+  let currentStep
+
+  // if the 'operator' has been set we know we're dealing with the second number
+  if (state['operator'] === '') {
+    currentStep = 'firstNumber'
+  } else {
+    currentStep = 'secondNumber'
+  } 
+
+  if (state[currentStep].indexOf('.') == -1) {
+    (state[currentStep]) += ('.')
+  }  else { 
+    buttonDecimal.disabled = true
+  }
+  updateScreen(state[currentStep])
+}
+
 
 const updateScreen = (screenText = '') => {
   document.getElementById('screen').innerText = screenText;
@@ -61,10 +80,11 @@ const clickListener9 = () => {
 const clickListener0 = () => {
   addNumber('0')
 }
-
-/* Update this so that it also empties state. */
 const clickListenerClear = () => {
   updateScreen()
+  for (let firstNumber in state) {
+    state[firstNumber] = ''
+  }
 }
 
 const clickListenerDivide = () => {
@@ -85,7 +105,7 @@ const clickListenerAdd = () => {
   It will look similar to 'addNumber' with some additional logic.
 */
 const clickListenerDecimal = () => {
-  updateScreen('.')
+  addDecimal()
 }
 
 const initializeListeners = () => {
