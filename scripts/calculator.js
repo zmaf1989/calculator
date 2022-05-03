@@ -6,78 +6,67 @@
 
   "state['someValueName'] = 10" etc.
 */
-const state = {}
+const state = {
+  firstNumber: '',
+  operator: '',
+  secondNumber: ''
+}
 
-/*
-  This function does one thing and one thing only: update the screen.
-  It doesn't touch state. It doesn't read from any external value. All
-  it does is accept a string and render it, because that's all it needs 
-  to do.
+const addNumber = (num) => {
+  // currentStep determines if we're updating the first or second number.
+  let currentStep
 
-  This point is worth dwelling on because it's a practice that will help
-  us accomplish more in all sorts of different contexts. Think "work smarter
-  not harder".
+  // if the 'operator' has been set we know we're dealing with the second number
+  if (state['operator'] === '') {
+    currentStep = 'firstNumber'
+  } else {
+    currentStep = 'secondNumber'
+  }
 
-  Just to illustrate the point: At this point I have literally no idea how
-  you're going to build out the rest of this progam, but by keeping "updateScreen"
-  I don't need to.
-*/
+  state[currentStep] += num
+  updateScreen(state[currentStep])
+}
+
 const updateScreen = (screenText = '') => {
   document.getElementById('screen').innerText = screenText;
 }
 
-/*
-  This function will set up all of the "event listeners" we'll need in order
-  for the calculator to works. To reiterate: an "event" is some action a user
-  performs (clicks, scrolling, mouse movement, keyboard use etc). 
-  
-  The "listeners" we're going to set up here will listen for a type of event,
-  and when they detect it they'll call some sort of function we specify.
-
-  To clarify, this will work in a series of steps:
-  1. "Declare" the initializeListeners function. (this is literally what 
-  we're doing in the function below).
-  2. "Declare" a second, "listening" function. We'll call it clickListener.
-  clickListener is what will get run when a click occurs.
-  3. "Call" initializeListeners, which will actually run the function and attach
-  the "listener" to the calculator buttons.
-  4. Click the button, and see clickListener get "called".
-*/
-
-// 2.
 const clickListener = () => {
-  updateScreen('1')
+  addNumber('1')
 }
 const clickListener2 = () => {
-  updateScreen('2')
+  addNumber('2')
 }
 const clickListener3 = () => {
-  updateScreen('3')
+  addNumber('3')
 }
 const clickListener4 = () => {
-  updateScreen('4')
+  addNumber('4')
 }
 const clickListener5 = () => {
-  updateScreen('5')
+  addNumber('5')
 }
 const clickListener6 = () => {
-  updateScreen('6')
+  addNumber('6')
 }
 const clickListener7 = () => {
-  updateScreen('7')
+  addNumber('7')
 }
 const clickListener8 = () => {
-  updateScreen('8')
+  addNumber('8')
 }
 const clickListener9 = () => {
-  updateScreen('9')
+  addNumber('9')
 }
 const clickListener0 = () => {
-  updateScreen('0')
+  addNumber('0')
 }
+
+/* Update this so that it also empties state. */
 const clickListenerClear = () => {
   updateScreen()
 }
+
 const clickListenerDivide = () => {
   updateScreen('/')
 }
@@ -90,11 +79,15 @@ const clickListenerSubtract = () => {
 const clickListenerAdd = () => {
   updateScreen('+')
 }
+
+/* 
+  Update this so that only one decimal can show up in either number.
+  It will look similar to 'addNumber' with some additional logic.
+*/
 const clickListenerDecimal = () => {
   updateScreen('.')
 }
 
-// 1.
 const initializeListeners = () => {
   const buttonOne = document.getElementById('button-one')
   const buttonTwo = document.getElementById('button-two')
@@ -113,7 +106,6 @@ const initializeListeners = () => {
   const buttonAdd = document.getElementById('button-add')
   const buttonDecimal = document.getElementById('button-decimal')
 
-  // listener is attached to "button-one"
   buttonOne.onclick = clickListener
   buttonTwo.onclick = clickListener2 
   buttonThree.onclick = clickListener3
@@ -131,7 +123,5 @@ const initializeListeners = () => {
   buttonAdd.onclick = clickListenerAdd
   buttonDecimal.onclick = clickListenerDecimal
 }
-// the buttonAllClear doesnt work for some reason.
 
-// 3.
 initializeListeners()
