@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <title>Functions</title>
+  <link rel="stylesheet" type="text/css" href="./styles/functions.css">
+  <script src="./scripts/test.functions.js" defer></script>
+  <script src="./scripts/functions.js" defer></script>
+</head>
+<body>
+  <h1>Callbacks</h1>
+  <div class="lesson-section">
+    <p>
+      Functions can be used in all sorts of different ways. We can think of
+      uses that are conceptually similar as a "pattern".
+    </p>
+    <p>
+      The first "pattern" we'll start with is what is known as a "callback" function.
+      A "callback" is a function that is passed to another function as an argument.
+    </p>
+    <p>
+      Consider the example below:
+    </p>
+    <pre>
+      const callbackFunctionOne = () => {
+        console.log('The first callback function is running.')
+      }
+      
+      const callbackFunctionTwo = () => {
+        console.log('The second callback function is running.')
+      }
+      
+      const parentFunction = (cb) => {
+        console.log('The parent function is running.')
+      
+        // Since 'cb' is just an agument, it can be anything.
+        cb()
+      }
+
+      parentFunction(callbackFunctionOne)
+      parentFunction(callbackFunctionTwo)
+    </pre>
+    <p>
+      If you copy/paste that code into the browser console you'll see the messages logged.
+      ("option + command + j")
+    </p>
+    <div class="code-exercise-section">
+      <h4>Exercise: doArithmetic</h4>
+      <p>
+        Complete the function "doArithmetic" in functions.js. "doArithmetic" will accept
+        a number as well as two "callback" functions. It will pass the number to the callback
+        functions in order and return the result.
+      </p>
+      <p>
+        For example:
+      </p>
+      <pre>
+        var result = doArithmetic(6, divideByTwo, multiplyByThree)
+
+        if (result === 9) {
+          console.log('doArithmetic works as-expected')
+        } else {
+          console.log('doArithmetic is broken')
+        }
+      </pre>
+      <p>
+        In this example, "divideByTwo" and "multiplyByThree" would be callbacks specified elsewhere.
+      </p>
+      <div class="code-results" id="callback-exercise-results">
+        Result:
+        <div class="code-results-output" id="callback-exercise-output"></div>
+        <button id="callback-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
+</body>
