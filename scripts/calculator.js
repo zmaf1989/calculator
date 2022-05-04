@@ -21,9 +21,24 @@ const addNumber = (num) => {
     currentStep = 'firstNumber'
   } else {
     currentStep = 'secondNumber'
-  }
+  } 
 
   state[currentStep] += num
+  updateScreen(state[currentStep])
+}
+
+const addDecimal = () => {
+  let currentStep
+
+  if (state['operator'] === '') {
+    currentStep = 'firstNumber'
+  } else {
+    currentStep = 'secondNumber'
+  } 
+
+  if (state[currentStep].indexOf('.') == -1) {
+    (state[currentStep]) += ('.')
+  }  
   updateScreen(state[currentStep])
 }
 
@@ -61,23 +76,36 @@ const clickListener9 = () => {
 const clickListener0 = () => {
   addNumber('0')
 }
-
-/* Update this so that it also empties state. */
 const clickListenerClear = () => {
   updateScreen()
+  for (let key in state) {
+    state[key] = ''
+  }
 }
 
 const clickListenerDivide = () => {
-  updateScreen('/')
+  if (state['operator'] === '') {
+    updateScreen('/')
+    state['operator'] = '/'
+  }
 }
 const clickListenerMultiply = () => {
+  if (state['operator'] === '') {
   updateScreen('*')
+  state['operator'] = '*'
+  }
 }
 const clickListenerSubtract = () => {
+  if (state['operator'] === '') {
   updateScreen('-')
+  state['operator'] = '-'
+  }
 }
 const clickListenerAdd = () => {
+  if (state['operator'] === '') {
   updateScreen('+')
+  state['operator'] ='+'
+  }
 }
 
 /* 
@@ -85,7 +113,28 @@ const clickListenerAdd = () => {
   It will look similar to 'addNumber' with some additional logic.
 */
 const clickListenerDecimal = () => {
-  updateScreen('.')
+  addDecimal()
+}
+
+const clickListenerEquals = () => {
+  let equate
+  const firstNumber = parseFloat(state['firstNumber'])
+  const secondNumber = parseFloat(state['secondNumber'])
+  const operator = state['operator']
+  if (isNaN(secondNumber) === false && operator === '/') {
+    equate = firstNumber % secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '*') {
+    equate = firstNumber * secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '-') {
+    equate = firstNumber - secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '+') {
+    equate = firstNumber + secondNumber
+  }
+  updateScreen(equate)
+  for (let key in state) {
+    state[key] = ''
+  }
+
 }
 
 const initializeListeners = () => {
@@ -105,6 +154,7 @@ const initializeListeners = () => {
   const buttonSubtract = document.getElementById('button-subtract')
   const buttonAdd = document.getElementById('button-add')
   const buttonDecimal = document.getElementById('button-decimal')
+  const buttonEquals = document.getElementById('button-equals')
 
   buttonOne.onclick = clickListener
   buttonTwo.onclick = clickListener2 
@@ -122,6 +172,7 @@ const initializeListeners = () => {
   buttonSubtract.onclick = clickListenerSubtract
   buttonAdd.onclick = clickListenerAdd
   buttonDecimal.onclick = clickListenerDecimal
+  buttonEquals.onclick = clickListenerEquals
 }
 
 initializeListeners()
