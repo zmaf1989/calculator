@@ -73,4 +73,55 @@
       </div>
     </div>
   </div>
+  <h1>Functions that Return Functions</h1>
+  <div class="lesson-section">
+    <p>
+      Some functions return other functions when called.
+    </p>
+    <pre>
+      const parentFun = () => {
+        console.log('The parent function is running.')
+
+        const childFun = () => {
+          console.log('The child function is running.')
+        }
+
+        return childFun
+      }
+      
+      // The 'parent' will log once
+      const test = parentFun()
+
+      // The 'child' will log twice
+      test()
+      test()
+    </pre>
+    <p>
+      By itself, this might not seem that useful. However, the advangage of doing this will become clear in the next lesson on "Closures".
+    </p>
+    <div class="code-exercise-section">
+      <h4>Exercise: plusFive</h4>
+      <p>
+        Complete the function "plusFive" in functions.js. When called, "plusFive" 
+        will return a function that adds five to any number passed as an argument.
+      </p>
+      <p>
+        For example:
+      </p>
+      <pre>
+        var addFive = plusFive()
+        var result = addFive(10)
+
+        // This should log 15
+        console.log(result)
+      </pre>
+      <div class="code-results" id="funreturn-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="funreturn-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="funreturn-exercise-output"></div>
+        <button id="funreturn-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
 </body>

@@ -1,7 +1,8 @@
 // Exercises are stored here. The 'null' values are filled in elsewhere.
 const sharedState = {
   exercises: {
-    callback: null
+    callback: null,
+    funreturn: null,
   }
 }
 
@@ -12,6 +13,12 @@ const elements = {
     results: document.getElementById('callback-exercise-results'),
     testCase: document.getElementById('callback-exercise-test-case'),
     button: document.getElementById('callback-exercise-button')
+  },
+  funreturn: {
+    output: document.getElementById('funreturn-exercise-output'),
+    results: document.getElementById('funreturn-exercise-results'),
+    testCase: document.getElementById('funreturn-exercise-test-case'),
+    button: document.getElementById('funreturn-exercise-button')
   }
 }
 
@@ -78,12 +85,42 @@ const tests = {
     }
 
     return setPassMessage('callback')
+  },
+  funreturn: () => {
+    const plusFive = sharedState.exercises.funreturn
+  
+    let testCase
+    let expected
+    let result
+
+    if (typeof plusFive !== 'function') {
+      return setFailMessage('funreturn', 'plusFive isn\'t defined.')
+    }
+
+    try {
+      testCase = 'typeof plusFive()'
+      expected = 'function'
+      result = typeof plusFive()
+      test(expected, result)
+
+      const addFive = plusFive()
+      testCase = 'addFive(20)'
+      expected = 25
+      result = addFive(20)
+      test(expected, result)
+    } catch (e) {
+      console.error(e)
+      return setFailMessage('funreturn', e.message, testCase)
+    }
+
+    return setPassMessage('funreturn')
   }
 }
 
 // Setup our listeners. These tests are run when the "test" button is clicked
 const initializeListeners = () => {
   elements.callback.button.onclick = tests.callback
+  elements.funreturn.button.onclick = tests.funreturn
 }
 
 // Setup "shared state". These values are attached to the "window" object so
