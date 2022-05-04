@@ -21,7 +21,7 @@ h4 {
   display: block;
   position: relative;
   padding: 15px;
-  width: 300px;
+  width: 500px;
   height: 200px;
   overflow: scroll;
 }
@@ -32,10 +32,22 @@ h4 {
   bottom: 15px;
 }
 
+.code-results-test-case {
+  margin: 5px 0;
+}
+
 .code-results-fail {
   background-color: rgb(236, 131, 131);
 }
 
 .code-results-pass {
   background-color: rgb(157, 221, 157);
+}
+
+.code-results-output {
+  padding: 0 0 0 15px;
+}
+
+.code-results-test-case {
+  padding: 0 0 0 15px;
 }
