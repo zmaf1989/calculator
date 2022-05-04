@@ -118,15 +118,17 @@ const clickListenerDecimal = () => {
 
 const clickListenerEquals = () => {
   let equate
-  
-  if (state['secondNumber'] != '' && state['operator'] === '/') {
-    equate = state['firstNumber'] % state['secondNumber']
-  } else if (state['secondNumber'] != '' && state['operator'] === '*') {
-    equate = state['firstNumber'] * state['secondNumber']
-  } else if (state['secondNumber'] != '' && state['operator'] === '-') {
-    equate = state['firstNumber'] - state['secondNumber']
-  } else if (state['secondNumber'] != '' && state['operator'] === '+') {
-    equate = state['firstNumber'] + state['secondNumber']
+  const firstNumber = parseFloat(state['firstNumber'])
+  const secondNumber = parseFloat(state['secondNumber'])
+  const operator = state['operator']
+  if (isNaN(secondNumber) === false && operator === '/') {
+    equate = firstNumber % secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '*') {
+    equate = firstNumber * secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '-') {
+    equate = firstNumber - secondNumber
+  } else if (isNaN(secondNumber) === false && operator === '+') {
+    equate = firstNumber + secondNumber
   }
   updateScreen(equate)
   for (let key in state) {
