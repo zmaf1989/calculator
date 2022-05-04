@@ -30,7 +30,6 @@ const addNumber = (num) => {
 const addDecimal = () => {
   let currentStep
 
-  // if the 'operator' has been set we know we're dealing with the second number
   if (state['operator'] === '') {
     currentStep = 'firstNumber'
   } else {
@@ -39,12 +38,9 @@ const addDecimal = () => {
 
   if (state[currentStep].indexOf('.') == -1) {
     (state[currentStep]) += ('.')
-  }  else { 
-    buttonDecimal.disabled = true
-  }
+  }  
   updateScreen(state[currentStep])
 }
-
 
 const updateScreen = (screenText = '') => {
   document.getElementById('screen').innerText = screenText;
@@ -82,22 +78,34 @@ const clickListener0 = () => {
 }
 const clickListenerClear = () => {
   updateScreen()
-  for (let firstNumber in state) {
-    state[firstNumber] = ''
+  for (let key in state) {
+    state[key] = ''
   }
 }
 
 const clickListenerDivide = () => {
-  updateScreen('/')
+  if (state['operator'] === '') {
+    updateScreen('/')
+    state['operator'] = '/'
+  }
 }
 const clickListenerMultiply = () => {
+  if (state['operator'] === '') {
   updateScreen('*')
+  state['operator'] = '*'
+  }
 }
 const clickListenerSubtract = () => {
+  if (state['operator'] === '') {
   updateScreen('-')
+  state['operator'] = '-'
+  }
 }
 const clickListenerAdd = () => {
+  if (state['operator'] === '') {
   updateScreen('+')
+  state['operator'] ='+'
+  }
 }
 
 /* 
@@ -106,6 +114,25 @@ const clickListenerAdd = () => {
 */
 const clickListenerDecimal = () => {
   addDecimal()
+}
+
+const clickListenerEquals = () => {
+  let equate
+  
+  if (state['secondNumber'] != '' && state['operator'] === '/') {
+    equate = state['firstNumber'] % state['secondNumber']
+  } else if (state['secondNumber'] != '' && state['operator'] === '*') {
+    equate = state['firstNumber'] * state['secondNumber']
+  } else if (state['secondNumber'] != '' && state['operator'] === '-') {
+    equate = state['firstNumber'] - state['secondNumber']
+  } else if (state['secondNumber'] != '' && state['operator'] === '+') {
+    equate = state['firstNumber'] + state['secondNumber']
+  }
+  updateScreen(equate)
+  for (let key in state) {
+    state[key] = ''
+  }
+
 }
 
 const initializeListeners = () => {
@@ -125,6 +152,7 @@ const initializeListeners = () => {
   const buttonSubtract = document.getElementById('button-subtract')
   const buttonAdd = document.getElementById('button-add')
   const buttonDecimal = document.getElementById('button-decimal')
+  const buttonEquals = document.getElementById('button-equals')
 
   buttonOne.onclick = clickListener
   buttonTwo.onclick = clickListener2 
@@ -142,6 +170,7 @@ const initializeListeners = () => {
   buttonSubtract.onclick = clickListenerSubtract
   buttonAdd.onclick = clickListenerAdd
   buttonDecimal.onclick = clickListenerDecimal
+  buttonEquals.onclick = clickListenerEquals
 }
 
 initializeListeners()
