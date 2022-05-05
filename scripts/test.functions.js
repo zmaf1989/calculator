@@ -83,7 +83,7 @@ const tests = {
       test(expected, result)
 
       testCase = 'doArithmetic(10, multiplyByThree, multiplyByThree)'
-      expected = 300
+      expected = 90
       result = doArithmetic(10, multiplyByThree, multiplyByThree)
       test(expected, result)
     } catch (e) {
