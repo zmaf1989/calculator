@@ -9,21 +9,7 @@ const doArithmetic = () => {
 
 }
 
-
-/*
-  FUNCTIONS RETURNING FUNCTIONS
-
-  Complete the function "plusFive" in functions.js. When called, "plusFive" 
-  will return a function that adds five to any number passed as an argument.
-*/
-const plusFive = () => {
-
-}
-
 /*
   Don't modify the code below. Or else.
 */
-window.sharedState.exercises = {
-  callback: doArithmetic,
-  funreturn: plusFive
-}
+window.sharedState.exercises.callback = doArithmetic

@@ -3,7 +3,9 @@
   <title>Functions</title>
   <link rel="stylesheet" type="text/css" href="./styles/functions.css">
   <script src="./scripts/test.functions.js" defer></script>
-  <script src="./scripts/functions.js" defer></script>
+  <script src="./scripts/functions/callback.js" defer></script>
+  <script src="./scripts/functions/funreturn.js" defer></script>
+  <script src="./scripts/functions/closure.js" defer></script>
 </head>
 <body>
   <h1>Callbacks</h1>
@@ -45,7 +47,7 @@
     <div class="code-exercise-section">
       <h4>Exercise: doArithmetic</h4>
       <p>
-        Complete the function "doArithmetic" in functions.js. "doArithmetic" will accept
+        Complete the function "doArithmetic" in callback.js. "doArithmetic" will accept
         a number as well as two "callback" functions. It will pass the number to the callback
         functions in order and return the result.
       </p>
@@ -102,7 +104,7 @@
     <div class="code-exercise-section">
       <h4>Exercise: plusFive</h4>
       <p>
-        Complete the function "plusFive" in functions.js. When called, "plusFive" 
+        Complete the function "plusFive" in funreturn.js. When called, "plusFive" 
         will return a function that adds five to any number passed as an argument.
       </p>
       <p>
@@ -169,7 +171,7 @@
         Remember the "doArithmetic" exercise above? Yeah, we're doing to juice that up on closures.
       </p>
       <p>
-        Complete the function "equationBuilder" in functions.js. "equationBuilder" accepts two "arithmetic" 
+        Complete the function "equationBuilder" in closure.js. "equationBuilder" accepts two "arithmetic" 
         functions as arguments and returns a function that will apply them on a number when called. For example:
       </p>
       <pre>
