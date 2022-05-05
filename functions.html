@@ -3,7 +3,9 @@
   <title>Functions</title>
   <link rel="stylesheet" type="text/css" href="./styles/functions.css">
   <script src="./scripts/test.functions.js" defer></script>
-  <script src="./scripts/functions.js" defer></script>
+  <script src="./scripts/functions/callback.js" defer></script>
+  <script src="./scripts/functions/funreturn.js" defer></script>
+  <script src="./scripts/functions/closure.js" defer></script>
 </head>
 <body>
   <h1>Callbacks</h1>
@@ -45,7 +47,7 @@
     <div class="code-exercise-section">
       <h4>Exercise: doArithmetic</h4>
       <p>
-        Complete the function "doArithmetic" in functions.js. "doArithmetic" will accept
+        Complete the function "doArithmetic" in callback.js. "doArithmetic" will accept
         a number as well as two "callback" functions. It will pass the number to the callback
         functions in order and return the result.
       </p>
@@ -102,7 +104,7 @@
     <div class="code-exercise-section">
       <h4>Exercise: plusFive</h4>
       <p>
-        Complete the function "plusFive" in functions.js. When called, "plusFive" 
+        Complete the function "plusFive" in funreturn.js. When called, "plusFive" 
         will return a function that adds five to any number passed as an argument.
       </p>
       <p>
@@ -121,6 +123,70 @@
         Results:
         <div class="code-results-output" id="funreturn-exercise-output"></div>
         <button id="funreturn-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
+  <h1>Closures</h1>
+  <div class="lesson-section">
+    <p>
+      This is where things get complicated. Put "simply", a "closure" is some sort of private, internal value a function can access.
+    </p>
+    <p>
+      So what the hell does that mean? It's easier to understand looking at code. Consider this example:
+    </p>
+    <pre>
+      const parentFun = () => {
+        let count = 0
+
+        const childFun = () => {
+          count++
+          console.log(`current count: ${count}`)
+        }
+
+        return childFun
+      }
+      
+      // The 'parent' will return a new function every time it's called
+      const test1 = parentFun()
+      const test2 = parentFun()
+
+      // count will be 2
+      test1()
+      test1()
+
+      // count will be 1
+      test2()
+    </pre>
+    <p>
+      Outwardly, this example is very similar to the one use in "Functions that return Functions".
+      There is one key difference however: notice the variable "count" created within "parentFun".
+    </p>
+    <p>
+      This variable is created EVERY TIME "parentFun" is run, meaning every function returned by "parentFun"
+      will retain its own, unique "count" variable. "count" is a closure.
+    </p>
+    <div class="code-exercise-section">
+      <h4>Exercise: equationBuilder</h4>
+      <p>
+        Remember the "doArithmetic" exercise above? Yeah, we're doing to juice that up on closures.
+      </p>
+      <p>
+        Complete the function "equationBuilder" in closure.js. "equationBuilder" accepts two "arithmetic" 
+        functions as arguments and returns a function that will apply them on a number when called. For example:
+      </p>
+      <pre>
+        var divideByFour = equationBuilder(divideByTwo, divideByTwo)
+        var result = divideByFour(8)
+
+        // This should log 2
+        console.log(result)
+      </pre>
+      <div class="code-results" id="closure-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="closure-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="closure-exercise-output"></div>
+        <button id="closure-exercise-button">Test Code</button>
       </div>
     </div>
   </div>
