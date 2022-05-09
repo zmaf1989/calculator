@@ -5,8 +5,11 @@
   functions as arguments and returns a function that will apply them on a number when called.
 */
 const equationBuilder = () => {
-
+  
 }
+   
+
+  
 
 /*
   Don't modify the code below. Or else.
