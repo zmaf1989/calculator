@@ -8,7 +8,12 @@ const doMathOnArray = () => {
 
 }
 
+const filterNumbers = () => {
+
+}
+
 /*
   Don't modify the code below. Or else.
 */
 window.sharedState.exercises.iterator = doMathOnArray
+window.sharedState.exercises.iteratorB = filterNumbers

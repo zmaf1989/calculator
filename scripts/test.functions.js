@@ -4,13 +4,15 @@ const sharedState = {
     callback: null,
     funreturn: null,
     closure: null,
-    iterator: null
+    iterator: null,
+    iteratorB: null,
   },
   tests: {
     callback: null,
     funreturn: null,
     closure: null,
-    iterator: null
+    iterator: null,
+    iteratorB: null,
   }
 }
 
@@ -39,6 +41,12 @@ const elements = {
     results: document.getElementById('iterator-exercise-results'),
     testCase: document.getElementById('iterator-exercise-test-case'),
     button: document.getElementById('iterator-exercise-button')
+  },
+  iteratorB: {
+    output: document.getElementById('iteratorB-exercise-output'),
+    results: document.getElementById('iteratorB-exercise-results'),
+    testCase: document.getElementById('iteratorB-exercise-test-case'),
+    button: document.getElementById('iteratorB-exercise-button')
   }
 }
 
@@ -190,6 +198,13 @@ const tests = {
     try {
       let anArray = [4, 2, 6, 8, 1]
 
+      testCase = 'result = doMathOnArray(anArray, multiplyByThree)'
+      result = doMathOnArray(anArray, multiplyByThree)
+      expected = undefined
+      
+      test(expected, result, `doMathOnArray should return nothing. Expected: ${undefined}. Actual: ${result}.`)
+
+      anArray = [4, 2, 6, 8, 1]
       testCase = 'doMathOnArray(anArray, multiplyByThree)'
       doMathOnArray(anArray, multiplyByThree)
       result = anArray[1]
@@ -197,12 +212,68 @@ const tests = {
       
       test(expected, result, `doMathOnArray does not give expected values: expected ${result} to be ${expected}`)
 
+      anArray = [4, 2, 6, 8, 1]
+      testCase = 'doMathOnArray(anArray, multiplyByThree)'
+      doMathOnArray(anArray, multiplyByThree)
+      result = anArray.length
+      expected = 5
+      
+      test(expected, result, `doMathOnArray should not modify the array's length. Expected: ${expected}. Actual: ${result}`)
     } catch (e) {
       console.error(e)
       return setFailMessage('iterator', e.message, testCase)
     }
 
     return setPassMessage('iterator')
+  },
+  iteratorB: () => {
+    const filterNumbers = sharedState.exercises.iteratorB
+    const anArray = [4, 2, 6, 8, 1, 6]
+    const isSix = (num) => {
+      return num === 6
+    }
+
+    let testCase
+    let expected
+    let result
+
+    if (typeof filterNumbers !== 'function') {
+      return setFailMessage('closure', 'filterNumbers isn\'t defined.')
+    }
+
+    try {
+      testCase = 'filterNumbers(anArray, isSix)'
+      result = Array.isArray(filterNumbers(anArray, isSix))
+      expected = true
+      
+      test(expected, result, `expected filterNumbers to return an array`)
+
+
+      testCase = 'filterNumbers(anArray, isSix)'
+      result = filterNumbers(anArray, isSix).length
+      expected = 2
+      
+      test(expected, result, `expected filterNumbers to return an array of length 2. Got ${result} instead.`)
+
+      testCase = 'filterNumbers(anArray, isSix)'
+      filterNumbers(anArray, isSix)
+      result = anArray.length
+      expected = 6
+      
+      test(expected, result, `expected anArray to be unchanged. Expected length: ${expected}. Actual: ${result}.`)
+
+      testCase = 'filterNumbers(anArray, isSix)'
+      result = filterNumbers(anArray, isSix)[1]
+      result = anArray[1]
+      expected = 6
+      
+      test(expected, result, `filterNumbers does not give expected values: expected ${result} to be ${expected}`)
+    } catch (e) {
+      console.error(e)
+      return setFailMessage('iteratorB', e.message, testCase)
+    }
+
+    return setPassMessage('iteratorB')
   }
 }
 
@@ -212,6 +283,7 @@ const initializeListeners = () => {
   elements.funreturn.button.onclick = tests.funreturn
   elements.closure.button.onclick = tests.closure
   elements.iterator.button.onclick = tests.iterator
+  elements.iteratorB.button.onclick = tests.iteratorB
 }
 
 // Setup "shared state". These values are attached to the "window" object so
