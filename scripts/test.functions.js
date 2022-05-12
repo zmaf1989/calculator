@@ -6,6 +6,7 @@ const sharedState = {
     closure: null,
     iterator: null,
     iteratorB: null,
+    recursion: null,
   },
   tests: {
     callback: null,
@@ -13,6 +14,7 @@ const sharedState = {
     closure: null,
     iterator: null,
     iteratorB: null,
+    recursion: null
   }
 }
 
@@ -47,6 +49,12 @@ const elements = {
     results: document.getElementById('iteratorB-exercise-results'),
     testCase: document.getElementById('iteratorB-exercise-test-case'),
     button: document.getElementById('iteratorB-exercise-button')
+  },
+  recursion: {
+    output: document.getElementById('recursion-exercise-output'),
+    results: document.getElementById('recursion-exercise-results'),
+    testCase: document.getElementById('recursion-exercise-test-case'),
+    button: document.getElementById('recursion-exercise-button')
   }
 }
 
@@ -274,6 +282,26 @@ const tests = {
     }
 
     return setPassMessage('iteratorB')
+  },
+  recursion: () => {
+    const powerOf = sharedState.exercises.recursion
+
+    if (typeof powerOf !== 'function') {
+      return setFailMessage('recursion', 'powerOf isn\'t defined.')
+    }
+
+    try {
+      testCase = 'powerOf(3, 5)'
+      result = powerOf(3, 5)
+      expected = 256
+      
+      test(expected, result, `powerOf does not give expected values: expected ${result} to be ${expected}`)
+    } catch (e) {
+      console.error(e)
+      return setFailMessage('recursion', e.message, testCase)
+    }
+
+    return setPassMessage('recursion')
   }
 }
 
@@ -284,6 +312,7 @@ const initializeListeners = () => {
   elements.closure.button.onclick = tests.closure
   elements.iterator.button.onclick = tests.iterator
   elements.iteratorB.button.onclick = tests.iteratorB
+  elements.recursion.button.onclick = tests.recursion
 }
 
 // Setup "shared state". These values are attached to the "window" object so

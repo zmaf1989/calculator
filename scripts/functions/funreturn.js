@@ -10,10 +10,6 @@ const plusFive = (num) => {
  }
  return addFive
  }
-var additionOfFive = plusFive()
-var result = additionOfFive(10)
-
-console.log(result)
 
 /*
   Don't modify the code below. Or else.

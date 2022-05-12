@@ -7,6 +7,7 @@
   <script src="./scripts/functions/funreturn.js" defer></script>
   <script src="./scripts/functions/closure.js" defer></script>
   <script src="./scripts/functions/iterator.js" defer></script>
+  <script src="./scripts/functions/recursion.js" defer></script>
 </head>
 <body>
   <a href="./home.html"><h3>Home</h3></a>
@@ -275,6 +276,70 @@
         Results:
         <div class="code-results-output" id="iteratorB-exercise-output"></div>
         <button id="iteratorB-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
+  <h1>Recursion</h1>
+  <div class="lesson-section">
+    <p>
+      A "recursive" function is a function that calls itself. Conceptually, recursion can look a lot like the iterator functions we've already worked with.
+      They're similiar in the respect that a function is called multiple times, each time with a new value until some sort of end-state is reached.
+    </p>
+    <p>
+      In practice however, the code we end up writing is markedly different. Recursive functions are a powerful tool that can be used in all sorts of interesting ways;
+      there are types of problems we'd be hard-pressed to solve without them.
+    </p>
+    <p>
+      There are a few ideas common to practically all recursive functions, the most important of all being the "end condition", which is some sort of check
+      that tells the function when it's reached the desired result and it should stop calling itself. Conceptually, you can think of this as being the
+      same as the middle "i < arr.length" condition in the following loop: "for (var i = 0; i < arr.length; i++)".
+    </p>
+    <p>
+      As you already say for youself during an earlier exercise, a function that calls itself without some sort of "end condition" will go on forever.
+    </p>
+    <p>
+      Take a moment to look over the following example. Note the "end condition". Note how each time the recursive function is called, it has different input.
+    </p>
+    <pre>
+      // "splitCount" returns the number of times a number can be divided in half without returning a number less than one.
+      const splitCount = (num, callCount = 0) => {
+        const half = num / 2
+
+        // This is our "end condition".
+        if (half < 1) {
+          return callCount
+        } else {
+          // This is where we "recurse". Note how both arguments will change with each call.
+          return splitCount(half, callCount + 1)
+        }
+      }
+
+      const result = splitCount(10)
+
+      // The result will be 3, since 10 can only be divided in half 3 times before the results are less than one.
+      console.log(result)
+    </pre>
+    <div class="code-exercise-section">
+      <h4>Exercise: powerOf</h4>
+      <p>
+        Write a recursive function "powerOF" that accepts a number and an exponent and returns the result. For example:
+      </p>
+      <pre>
+        const result = powerOf(3, 5)
+
+        // result will be 243
+        console.log(result)
+      </pre>
+      <p>
+        It's worth noting here that you could also accomplish this task without using recursion. Don't do it. Don't use an iterator.
+        "powerOf" should call itself. (A hint: powerOf may need to accept more than two arguments to work.)
+      </p>
+      <div class="code-results" id="recursion-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="recursion-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="recursion-exercise-output"></div>
+        <button id="recursion-exercise-button">Test Code</button>
       </div>
     </div>
   </div>
