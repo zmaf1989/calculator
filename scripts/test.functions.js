@@ -3,7 +3,14 @@ const sharedState = {
   exercises: {
     callback: null,
     funreturn: null,
-    closure: null
+    closure: null,
+    iterator: null
+  },
+  tests: {
+    callback: null,
+    funreturn: null,
+    closure: null,
+    iterator: null
   }
 }
 
@@ -26,6 +33,12 @@ const elements = {
     results: document.getElementById('closure-exercise-results'),
     testCase: document.getElementById('closure-exercise-test-case'),
     button: document.getElementById('closure-exercise-button')
+  },
+  iterator: {
+    output: document.getElementById('iterator-exercise-output'),
+    results: document.getElementById('iterator-exercise-results'),
+    testCase: document.getElementById('iterator-exercise-test-case'),
+    button: document.getElementById('iterator-exercise-button')
   }
 }
 
@@ -159,6 +172,37 @@ const tests = {
     }
 
     return setPassMessage('closure')
+  },
+  iterator: () => {
+    const doMathOnArray = sharedState.exercises.iterator
+    const divideByTwo = num => num / 2
+    const multiplyByThree = num => num * 3
+
+    let testCase
+    let expected
+    let result
+    let equation
+
+    if (typeof doMathOnArray !== 'function') {
+      return setFailMessage('closure', 'doMathOnArray isn\'t defined.')
+    }
+
+    try {
+      let anArray = [4, 2, 6, 8, 1]
+
+      testCase = 'doMathOnArray(anArray, multiplyByThree)'
+      doMathOnArray(anArray, multiplyByThree)
+      result = anArray[1]
+      expected = 6
+      
+      test(expected, result, `doMathOnArray does not give expected values: expected ${result} to be ${expected}`)
+
+    } catch (e) {
+      console.error(e)
+      return setFailMessage('iterator', e.message, testCase)
+    }
+
+    return setPassMessage('iterator')
   }
 }
 
@@ -167,6 +211,7 @@ const initializeListeners = () => {
   elements.callback.button.onclick = tests.callback
   elements.funreturn.button.onclick = tests.funreturn
   elements.closure.button.onclick = tests.closure
+  elements.iterator.button.onclick = tests.iterator
 }
 
 // Setup "shared state". These values are attached to the "window" object so
