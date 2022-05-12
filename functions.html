@@ -241,5 +241,40 @@
         <button id="iterator-exercise-button">Test Code</button>
       </div>
     </div>
+    <div class="code-exercise-section">
+      <h4>Exercise: filterNumbers</h4>
+      <p>
+        This second exercise is slightly different. Here, we'll be creating a function a returns a completely new array rather than modifying the old one.
+        A correct answer should leave the original array unchanged.
+      </p>
+      <p>
+        Create a function 'filterNumbers' that accepts an array of numbers and an iterator. The iterator will perform some sort of check on each number
+        in the array and return 'true' or 'false'. 'filterNumbers' should return an array containing only the values which 'pass' the iterator's check.
+        For example:
+      </p>
+      <pre>
+        // It literally just checks if a number is six. Returns true/false.
+        const isSix = (num) => {
+          return num === 6
+        }
+
+        const anArray = [4, 2, 6, 8, 1, 6]
+
+        const result = filterNumbers(anArray, isSix)
+
+        // This will log [4, 2, 6, 8, 1, 6]. "anArray" is unchanged.
+        console.log(anArray)
+
+        // This will log [6, 6]
+        console.log(result)
+      </pre>
+      <div class="code-results" id="iteratorB-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="iteratorB-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="iteratorB-exercise-output"></div>
+        <button id="iteratorB-exercise-button">Test Code</button>
+      </div>
+    </div>
   </div>
 </body>
