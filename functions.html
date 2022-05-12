@@ -6,6 +6,7 @@
   <script src="./scripts/functions/callback.js" defer></script>
   <script src="./scripts/functions/funreturn.js" defer></script>
   <script src="./scripts/functions/closure.js" defer></script>
+  <script src="./scripts/functions/iterator.js" defer></script>
 </head>
 <body>
   <h1>Callbacks</h1>
@@ -187,6 +188,57 @@
         Results:
         <div class="code-results-output" id="closure-exercise-output"></div>
         <button id="closure-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
+  <h1>Iterators</h1>
+  <div class="lesson-section">
+    <p>
+      This next section will involve arrays and loops.
+    </p>
+    <p>
+      Put simply, an "iterator" is a function that will be called once on every single value stored in an array. If an array has a length of 8, the iterator will be called eight times.
+    </p>
+    <p>
+      Each time the "iterator" is called it accepts one of the values stored in the array as an argument. Consider this example:
+    </p>
+    <pre>
+      const anArray = ['mincemeat', 'involuntary basejumping', 'a big bag of tumors']
+
+      const anIterator = (value) => {
+        console.log(value)
+      }
+
+      const aFunctionThatUsesIterator = (arr, iterator) => {
+        for(var i = 0; i < arr.length; i++) {
+          let value = arr[i]
+          iterator(value)
+        }
+      }
+
+      // This will log every value in 'anArray'
+      aFunctionThatUsesIterator(anArray, anIterator)
+    </pre>
+    <div class="code-exercise-section">
+      <h4>Exercise: doMathOnArray</h4>
+      <p>
+        Create a function that accepts an array of numbers and an iterator. "doMathOnArray" will call the iterator on each number in the 
+        array and store the result in the same location in the array (this means the original value will be overwritten). For example:
+      </p>
+      <pre>
+        const anArray = [4, 2, 6, 8, 1]
+
+        doMathOnArray(anArray, multiplyByThree)
+
+        // This will log [12, 6, 18, 24, 3]
+        console.log(anArray)
+      </pre>
+      <div class="code-results" id="iterator-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="iterator-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="iterator-exercise-output"></div>
+        <button id="iterator-exercise-button">Test Code</button>
       </div>
     </div>
   </div>
