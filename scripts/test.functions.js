@@ -7,6 +7,7 @@ const sharedState = {
     iterator: null,
     iteratorB: null,
     recursion: null,
+    decorator: null
   },
   tests: {
     callback: null,
@@ -14,7 +15,8 @@ const sharedState = {
     closure: null,
     iterator: null,
     iteratorB: null,
-    recursion: null
+    recursion: null,
+    decorator: null
   }
 }
 
@@ -55,6 +57,12 @@ const elements = {
     results: document.getElementById('recursion-exercise-results'),
     testCase: document.getElementById('recursion-exercise-test-case'),
     button: document.getElementById('recursion-exercise-button')
+  },
+  decorator: {
+    output: document.getElementById('decorator-exercise-output'),
+    results: document.getElementById('decorator-exercise-results'),
+    testCase: document.getElementById('decorator-exercise-test-case'),
+    button: document.getElementById('decorator-exercise-button')
   }
 }
 
@@ -302,6 +310,59 @@ const tests = {
     }
 
     return setPassMessage('recursion')
+  },
+  decorator: () => {
+    const keyList = sharedState.exercises.decorator
+    let testCase
+    let result
+    let expected
+
+    if (typeof keyList !== 'function') {
+      return setFailMessage('decorator', 'keyList isn\'t defined.')
+    }
+
+    try {
+      let obj = {}
+      testCase = 'keyList({})'
+      keyList(obj)
+
+      result = Array.isArray(obj.listOfKeys)
+      expected = true
+      test(expected, result, 'keyList should create an array on the key listOfKeys')
+
+      obj = {}
+      testCase = 'keyList({})'
+      keyList(obj)
+
+      result = obj.listOfKeys.length
+      expected = 0
+      test(expected, result, 'keyList should set an empty array when the object has no keys')
+
+      obj = {
+        name: 'Jerry',
+        age: 25,
+        occupation: 'Taxidermist'
+      }
+
+      testCase = `keyList({
+        name: 'Jerry',
+        age: 25,
+        occupation: 'Taxidermist'
+      })`
+
+      keyList(obj)
+      result = obj.listOfKeys.length
+      expected = 3
+      test(expected, result, 'expected an array of length three for listOfKeys')
+
+      keyList(obj)
+      result = obj.listOfKeys.length
+      expected = 3
+      test(expected, result, 'calling keyList more than once should not change the result')
+    } catch (e) {
+      console.error(e)
+      return setFailMessage('decorator', e.message, testCase)
+    }
   }
 }
 
@@ -313,6 +374,7 @@ const initializeListeners = () => {
   elements.iterator.button.onclick = tests.iterator
   elements.iteratorB.button.onclick = tests.iteratorB
   elements.recursion.button.onclick = tests.recursion
+  elements.decorator.button.onclick = tests.decorator
 }
 
 // Setup "shared state". These values are attached to the "window" object so

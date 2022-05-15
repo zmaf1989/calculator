@@ -8,6 +8,7 @@
   <script src="./scripts/functions/closure.js" defer></script>
   <script src="./scripts/functions/iterator.js" defer></script>
   <script src="./scripts/functions/recursion.js" defer></script>
+  <script src="./scripts/functions/decorator.js" defer></script>
 </head>
 <body>
   <a href="./home.html"><h3>Home</h3></a>
@@ -343,4 +344,152 @@
       </div>
     </div>
   </div>
+  <h1>Methods, Decorators and Factories</h1>
+  <div class="lesson-section">
+    <p>
+      A "method" is a function attached to an object. That's literally it. There's some complexity here we're choosing to ignore for now. We'll cover it when we get to "classes".
+    </p>
+    <p>
+      Methods can be set like any other key on an object. Once set, they can be called like any other function.
+    </p>
+    <pre>
+      const anObject = {
+        someNum1: 10
+      }
+
+      const add = (num1, num2) => {
+        return num1 + num2
+      }
+
+      // Notice how the 'key' can be whatever we want. It doesn't have to match the function variable name.
+      anObject.someMethodName = add
+      anObject.someNum2 = 5
+
+      anObject.someNum3 = anObject.someMethodName(anObject.someNum1, anObject.someNum2)
+
+      // anObject will have 4 keys. Three will be numbers. One will be a method.
+      console.log(anObject)
+    </pre>
+    <p>
+      A "decorator" is a function that accepts an already-existing object (or array) and attaches additional keys and values onto it.
+    </p>
+    <pre>
+      const personObj = {
+        name: 'Roscoe',
+        age: 45,
+        smoker: true,
+        obese: true,
+        ownsTigers: false
+      }
+
+      const morbidityDecorator = (person) => {
+        const AVERAGE_AGE_OF_DEATH = 75
+
+        // I know you've never seen this syntax before. This is short-hand for assiging keys & values one-by-one. IE "const age = person.age" etc...
+        const { age, smoker, obese, ownsTigers } = person
+        let yearsRemaining = AVERAGE_AGE_OF_DEATH - age
+
+        if (smoker) {
+          yearsRemaining -= (yearsRemaining / 4)
+        }
+
+        if (obese) {
+          yearsRemaining -= (yearsRemaining / 4)
+        }
+
+        if (ownsTigers) {
+          yearsRemaining -= (yearsRemaining / 2)
+        }
+
+        person.probableAgeOfDeath = parseInt(age + yearsRemaining)
+      }
+
+      morbidityDecorator(personObj)
+      
+      // probableAgeOfDeath is 61. Notice that we didn't return anything OR re-assign "personObj" but the object is still changed. This is worth
+      // discussing further if you don't understand why.
+      console.log(personObj)
+    </pre>
+    <p>
+      Finally, a 'factory' function is a function that accepts some values and "builds" a new object.
+    </p>
+    <pre>
+      const humanCloningMaching = (name) => {
+        // Again, new syntax. The way I'm using "name" here is the same as writing: {name: name}
+        const newHuman = {
+          name,
+          age: 0,
+          smoker: false,
+          obese, false,
+          ownsTigers: false
+        }
+
+        return newHuman
+      }
+
+      const pete = humanCloningMaching('Pete')
+      const frank = humanCloningMaching('Frank')
+
+      // This will log an object with a name of 'frank'
+      console.log(frank)
+    </pre>
+    <div class="code-exercise-section">
+      <h4>Exercise: keyList</h4>
+      <p>
+        Create a "decorator" function called "keyList" that accepts an object as an argument. keyList will attach an array named "listOfKeys" to the 
+        object containing - you guessed it - all the keys on the object EXCEPT listOfKeys. An example:
+      </p>
+      <pre>
+        const obj1 = {
+          foo: true,
+          bar: false
+        }
+
+        const obj2 = {}
+
+        keyList(obj1)
+        keyList(obj2)
+
+        // logs ['foo', 'bar']
+        console.log(obj1.listOfKeys)
+
+        // logs []
+        console.log(obj2.listOfKeys)
+      </pre>
+      <p>
+        Additionally, calling "keyList" multiple times on the same object should NEVER result in "listOfKeys" listing itself.
+      </p>
+      <div class="code-results" id="decorator-exercise-results">
+        Test Case:
+        <pre class="code-results-test-case" id="decorator-exercise-test-case"></pre>
+        Results:
+        <div class="code-results-output" id="decorator-exercise-output"></div>
+        <button id="decorator-exercise-button">Test Code</button>
+      </div>
+    </div>
+  </div>
 </body>
+
+<!-- <h1>Title</h1>
+<div class="lesson-section">
+  <p>
+  </p>
+  <pre>
+  </pre>
+  <div class="code-exercise-section">
+    <h4>Exercise: </h4>
+    <p>
+    </p>
+    <pre>
+    </pre>
+    <p>
+    </p>
+    <div class="code-results" id="recursion-exercise-results">
+      Test Case:
+      <pre class="code-results-test-case" id="recursion-exercise-test-case"></pre>
+      Results:
+      <div class="code-results-output" id="recursion-exercise-output"></div>
+      <button id="recursion-exercise-button">Test Code</button>
+    </div>
+  </div>
+</div> -->
