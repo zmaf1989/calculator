@@ -14,6 +14,11 @@ h4 {
   margin: 0 0 30px 30px;
 }
 
+.lesson-section > img{
+  max-width: 400px;
+  max-height: 400px;
+}
+
 .code-exercise-section {
   background-color: rgb(233, 233, 233);
   padding: 15px;
