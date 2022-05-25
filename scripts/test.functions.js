@@ -280,7 +280,6 @@ const tests = {
 
       testCase = 'filterNumbers(anArray, isSix)'
       result = filterNumbers(anArray, isSix)[1]
-      result = anArray[1]
       expected = 6
       
       test(expected, result, `filterNumbers does not give expected values: expected ${result} to be ${expected}`)
@@ -301,7 +300,7 @@ const tests = {
     try {
       testCase = 'powerOf(3, 5)'
       result = powerOf(3, 5)
-      expected = 256
+      expected = 243
       
       test(expected, result, `powerOf does not give expected values: expected ${result} to be ${expected}`)
     } catch (e) {
