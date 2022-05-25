@@ -5,7 +5,11 @@
 </head>
 <body>
   <a href="./home.html"><h3>Home</h3></a>
-  <h1>The Chrome Debugger</h1>
+  <h1>The 
+    <a href="https://developer.chrome.com/docs/devtools/javascript/reference/" target=”_blank”>
+      Chrome Debugger
+    </a>
+  </h1>
   <div class="lesson-section">
     <p>
       The Chrome browser includes a variety of useful tools. Here now begin to explore them in more detail.
@@ -40,6 +44,34 @@
       Now, click the "test code" button for the callback section. This will run "doArithmetic". You'll see the following:
     </p>
     <img src="./images/debugger_7.png">
+    <p>
+      There's a lot of information here. We'll start from the top. We'll start with the controls that allow the debugger to walk through your code. (These aren't in order.)
+    </p>
+    <img src="./images/debugger_8.png">
+    <ul>
+      <li>
+        "Continue" - This button tells the debugger to return to running code "normally". You may notice that if you press it, you suddenly find the debugger
+        will re-open again in the exact same spot. This happens because the "breakpoint" is getting reached more than once: every time your function is called it will be hit.
+      </li>
+      <li>
+        "Step" - This allows us to walk through the our code step-by-step. Using this button, we're following code exactly as it runs.
+      </li>
+      <li>
+        "Step Out" - You'll understand what this does better once you have an understanding of what a "call stack" is. The short version: it pops the debugger out into the function that called the current one.
+        In this case, the test file I created is the one calling your "doArithmetic" function. If you hit this button that's where you'll end up.
+      </li>
+      <li>
+        "Step In" - Opposite of the above.
+      </li>
+      <li>
+        "Step Over" - Functionally this is very similar to "step" with one caveat: it won't dive into functions as they're called. (Try this with cb1 & cb2 to see what I mean.)
+      </li>
+    </ul>
+    <p>
+      The next feature we'll take a look at is "Watch" or "Watch Variable". This feature is actually fairly simple: all it does is help us keep track of specific variables as we're debugging the system.
+      Using it is simple: give it the name of a variable, and it will display the value of any variables with that name that exists in the currenct context.
+      Click the "+" symbol, enter a variable name (for example "someNum" or "result") and hit enter.
+    </p>
     <pre>
     </pre>
     <div class="code-exercise-section">
