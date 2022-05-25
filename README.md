@@ -13,6 +13,7 @@ Atomic, one-off lessons on various subjects.
 - [ ] Factories
 
 ### Errors
+- [ ] The Chrome Debugger
 - [ ] The Stack
 - [ ] Errors vs. Exceptions
 - [ ] Try / Catch

@@ -6,12 +6,21 @@ body {
   padding: 20px;
 }
 
+a {
+  text-decoration: none;
+}
+
 h4 {
   margin: 0;
 }
 
 .lesson-section {
   margin: 0 0 30px 30px;
+}
+
+.lesson-section > img{
+  max-width: 400px;
+  max-height: 400px;
 }
 
 .code-exercise-section {
