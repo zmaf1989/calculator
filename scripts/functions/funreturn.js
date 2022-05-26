@@ -4,12 +4,12 @@
   Complete the function "plusFive" in functions.js. When called, "plusFive" 
   will return a function that adds five to any number passed as an argument.
 */
-const plusFive = (num) => {
+const plusFive = () => {
  const addFive = (someNum) => {
   return someNum + 5
  }
- return addFive
- }
+  return addFive
+}
 
 /*
   Don't modify the code below. Or else.

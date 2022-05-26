@@ -16,10 +16,6 @@ const equationBuilder = (cb1, cb2) => {
   return functionApplicator
 }
 
-multiplyByNine = equationBuilder(multiplyByThree, multiplyByThree)
-answer = multiplyByNine(3)
-
-
 /*
   Don't modify the code below. Or else.
 */
