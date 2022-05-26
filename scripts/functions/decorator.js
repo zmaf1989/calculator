@@ -4,15 +4,17 @@ Create a "decorator" function called "keyList" that accepts an object as an argu
 keyList will attach an array named "listOfKeys" to the object containing - you guessed 
 it - all the keys on the object EXCEPT listOfKeys. */
 const keyList = (obj) => {
-  let listOfKeys = []
-  if(typeof obj.listOfKeys != "undefined") {
-    obj.listOfKeys = listOfKeys
-    for(const key in obj) {
-      listOfKeys.push(key)
-    obj.listOfKeys = listOfKeys
+  let newArray = []
+  for(const prop in obj) {
+    newArray.push(prop)
+    if ('listOfKeys' in obj) {
+      delete obj.listOfKeys
     }
   }
-}  
+  obj.listOfKeys = newArray
+  console.log(newArray)
+}
+  
 
 /*
   Don't modify the code below. Or else.

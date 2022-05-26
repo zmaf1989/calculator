@@ -362,6 +362,8 @@ const tests = {
       console.error(e)
       return setFailMessage('decorator', e.message, testCase)
     }
+
+    return setPassMessage('decorator')
   }
 }
 
